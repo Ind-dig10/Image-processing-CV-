@@ -7,8 +7,8 @@ im_power_law_transformation = cv2.pow(new_gray_image, 0.5)
 
 gamma = 1.5
 adjusted = Power_transformation.Stepen(gray_image, gamma=gamma)
-cv2.imshow("gammam image 1", adjusted)
-cv2.imshow("Image_3", im_power_law_transformation)
+#cv2.imshow("gammam image 1", adjusted)
+cv2.imshow("kzn", im_power_law_transformation)
 
 def Stepen(image, gamma = 1.0):
 	invGamma = 1.0 / gamma
