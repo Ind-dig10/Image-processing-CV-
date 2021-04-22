@@ -1,7 +1,9 @@
 import cv2
 import numpy as np
 from Power_transformation import superimpose_mask_on_image
-from Roberts_2 import roberts_func
+#from Roberts_2 import roberts_func
+from Binary import adap_binary
+from Lab6 import smeshenie
 
 #Гамма
 gamma = 1.8
@@ -23,8 +25,16 @@ cv2.imshow("Image_1", image)
 #2_лабораторная работа
 #Оператор Робертса
 #roberts_func(image)
-kernely = np.array([[0, -1], [1, 0]], dtype=int)
-superimpose_mask_on_image(kernely, image)
+#kernely = np.array([[0, -1], [1, 0]], dtype=int)
+#superimpose_mask_on_image(kernely, image)
+
+#3_Лабораторная работа
+#5 бинаризация изображения
+#adap_binary(image)
+
+#6_Лабораторная работа
+#Смещение изображения
+smeshenie(image)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()

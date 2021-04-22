@@ -8,12 +8,17 @@ def roberts_func(inputImage):
     img = inputImage
 
     grayImage = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+    n, m = np.shape(gray_image)
 
     kernelx = np.array([[-1, 0], [0, 1]], dtype=int)
     kernely = np.array([[0, -1], [1, 0]], dtype=int)
 
     x = cv.filter2D(grayImage, cv.CV_16S, kernelx)
     y = cv.filter2D(grayImage, cv.CV_16S, kernely)
+
+    for i in range(n):
+        for j in range(m):
+
 
     absX = cv.convertScaleAbs(x)
     absY = cv.convertScaleAbs(y)
