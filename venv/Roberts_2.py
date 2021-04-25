@@ -16,8 +16,6 @@ def roberts_func(inputImage):
     x = cv.filter2D(grayImage, cv.CV_16S, kernelx)
     y = cv.filter2D(grayImage, cv.CV_16S, kernely)
 
-    for i in range(n):
-        for j in range(m):
 
 
     absX = cv.convertScaleAbs(x)

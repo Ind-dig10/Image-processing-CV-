@@ -99,3 +99,5 @@ def smeshenie(image):
 # cv.imshow('Source image', src)
 # cv.imshow('Warp', warp_dst)
 # cv.imshow('Warp + Rotate', warp_rotate_dst)
+
+def My_func3(image):
