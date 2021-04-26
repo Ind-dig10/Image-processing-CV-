@@ -15,7 +15,7 @@ def threshold_image(image):
     print("threshold：%s" % ret)
     cv.imshow("OTSU", binary)
 
-def BRZ(im):
+def binary_image_transformations(im):
     threshold = 150
     imm = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
     image = np.array(imm)
@@ -27,16 +27,16 @@ def BRZ(im):
                 else:
                     image[i, j] = 0
 
-    cv2.imshow("OTSU", image)
+    cv2.imshow("Бинарное", image)
     return image
 
 
 def Morphological_transformations(image, type):
-    kernel = np.ones((5, 5), np.uint8)
+    kernel = np.ones((3, 3), np.uint8)
 
     result = {
-        1: cv2.erode(image, kernel, iterations=1),
-        2: cv2.dilate(image, kernel, iterations=1),
+        1: cv2.erode(image, kernel, iterations=1), #Эрозия
+        2: cv2.dilate(image, kernel, iterations=1), #Наращивание
         3: cv2.morphologyEx(image, cv2.MORPH_OPEN, kernel),
         4: cv2.morphologyEx(image, cv2.MORPH_CLOSE, kernel),
         5: cv2.morphologyEx(image, cv2.MORPH_GRADIENT, kernel),
@@ -44,4 +44,4 @@ def Morphological_transformations(image, type):
         7: cv2.morphologyEx(image, cv2.MORPH_BLACKHAT, kernel)
     }
     default_value = -1
-    cv2.imshow("erosion", result.get(type, default_value))
+    cv2.imshow("Morphological transformations", result.get(type, default_value))

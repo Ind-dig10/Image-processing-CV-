@@ -2,8 +2,8 @@ import cv2
 import numpy as np
 #from Power_transformation import superimpose_mask_on_image
 #from Roberts_2 import roberts_func
-from Binary import *
-#from Lab6 import smeshenie
+#from Binary import *
+from Aff_6 import smeshenie
 from lab3 import  *
 
 #Гамма
@@ -12,7 +12,7 @@ gamma = 1.8
 #Чтения изображения
 image = cv2.imread("kzn_2.jpg")
 
-cv2.imshow("Image_1", image)
+#cv2.imshow("Image_1", image)
 #Преобразование в полутоновое
 #gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 #cv2.imshow("Image_2", gray_image)
@@ -30,18 +30,19 @@ cv2.imshow("Image_1", image)
 #superimpose_mask_on_image(kernely, image)
 
 #3_Лабораторная работа
-cha(image)
+#Lab_3("kzn_2.jpg")
 
 #4_лабораторная работа
 
 
 #5 бинаризация изображения
-#binaryImage = BRZ(image)
-#Morphological_transformations(binaryImage, 2)
+#binaryImage = binary_image_transformations(image)
+#Morphological_transformations(binaryImage, 5)
+#Morphological_transformations(binaryImage, 1)
 
 #6_Лабораторная работа
 #Смещение изображения
-#smeshenie(image)
+smeshenie(image)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
