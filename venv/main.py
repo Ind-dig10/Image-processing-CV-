@@ -3,14 +3,16 @@ import numpy as np
 #from Power_transformation import superimpose_mask_on_image
 #from Roberts_2 import roberts_func
 #from Binary import *
-from Aff_6 import smeshenie
-from lab3 import  *
+#from Aff_6 import smeshenie
+#from lab3 import *
+#from Dct_Transform import *
+from Discrete_Cosine_Transform import *
 
 #Гамма
 gamma = 1.8
 
 #Чтения изображения
-image = cv2.imread("kzn_2.jpg")
+image = cv2.imread("2.jpg", 0)
 
 #cv2.imshow("Image_1", image)
 #Преобразование в полутоновое
@@ -33,7 +35,8 @@ image = cv2.imread("kzn_2.jpg")
 #Lab_3("kzn_2.jpg")
 
 #4_лабораторная работа
-
+#DCT(image)
+Discrete_Transform(image)
 
 #5 бинаризация изображения
 #binaryImage = binary_image_transformations(image)
@@ -42,7 +45,7 @@ image = cv2.imread("kzn_2.jpg")
 
 #6_Лабораторная работа
 #Смещение изображения
-smeshenie(image)
+#smeshenie(image)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
