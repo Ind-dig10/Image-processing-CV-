@@ -5,16 +5,16 @@ import numpy as np
 #from Binary import *
 #from Aff_6 import smeshenie
 #from lab3 import *
-#from Dct_Transform import *
+from Dct_Transform import *
 from Discrete_Cosine_Transform import *
 
 #Гамма
 gamma = 1.8
 
 #Чтения изображения
-image = cv2.imread("2.jpg", 0)
+image = cv2.imread("2.jpg")
 
-#cv2.imshow("Image_1", image)
+cv2.imshow("Image_1", image)
 #Преобразование в полутоновое
 #gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 #cv2.imshow("Image_2", gray_image)
