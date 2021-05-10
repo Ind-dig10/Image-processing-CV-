@@ -5,14 +5,14 @@ import numpy as np
 #from Binary import *
 #from Aff_6 import smeshenie
 #from lab3 import *
-from Dct_Transform import *
+#from Dct_Transform import *
 from Discrete_Cosine_Transform import *
 
 #Гамма
 gamma = 1.8
 
 #Чтения изображения
-image = cv2.imread("2.jpg")
+image = cv2.imread("2.jpg", 0)
 
 cv2.imshow("Image_1", image)
 #Преобразование в полутоновое
@@ -35,8 +35,8 @@ cv2.imshow("Image_1", image)
 #Lab_3("kzn_2.jpg")
 
 #4_лабораторная работа
+DCT(image)
 #DCT(image)
-Discrete_Transform(image)
 
 #5 бинаризация изображения
 #binaryImage = binary_image_transformations(image)
