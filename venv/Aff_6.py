@@ -4,14 +4,6 @@ import argparse
 
 # from __future__ import print_function
 
-img_org = np.zeros(shape=(780, 1050))
-img_size = np.zeros(shape=(780, 1050))
-
-pts1 = np.float32([[693, 349], [605, 331], [445, 59]])
-pts2 = np.float32([[1379, 895], [1213, 970], [684, 428]])
-Mat = cv2.getAffineTransform(pts2, pts1)
-B = Mat
-
 
 
 def GetBilinearPixel(imArr, posX, posY):
@@ -78,25 +70,14 @@ def smeshenie(image):
 
     cv2.imshow('Trans', img_translation)
 
-# def smeshenie(image):
-# parser = argparse.ArgumentParser(description='Code for Affine Transformations tutorial.')
-# parser.add_argument('--input', help='Path to input image.', default='lena.jpg')
-# args = parser.parse_args()
-#    src = image #cv.imread(cv.samples.findFile(args.input))
+def Affine(image, x, y):
+    img = image
 
-#   srcTri = np.array([[0, 0], [src.shape[1] - 1, 0], [0, src.shape[0] - 1]]).astype(np.float32)
-#  dstTri = np.array([[0, src.shape[1] * 0.33], [src.shape[1] * 0.85, src.shape[0] * 0.25],
-#                     [src.shape[1] * 0.15, src.shape[0] * 0.7]]).astype(np.float32)
-#v
-# warp_mat = cv.getAffineTransform(srcTri, dstTri)
-# warp_dst = cv.warpAffine(src, warp_mat, (src.shape[1], src.shape[0]))
-# Rotating the image after Warp
-# center = (warp_dst.shape[1] // 2, warp_dst.shape[0] // 2)
-# angle = -90
-# scale = 0.6
-# rot_mat = cv.getRotationMatrix2D(center, angle, scale)
-# warp_rotate_dst = cv.warpAffine(warp_dst, rot_mat, (warp_dst.shape[1], warp_dst.shape[0]))
-# cv.imshow('Source image', src)
-# cv.imshow('Warp', warp_dst)
-# cv.imshow('Warp + Rotate', warp_rotate_dst)
+    num_rows, num_cols = img.shape[:2]
+
+    translation_matrix = np.float32([[1, 0, x], [0, 1, y]])
+
+    img_translation = cv2.warpAffine(img, translation_matrix, (num_cols, num_rows))
+
+    cv2.imshow('Translation', img_translation)
 

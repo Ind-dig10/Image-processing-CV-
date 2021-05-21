@@ -58,9 +58,7 @@ def CosY(v, y, n):
     return result
 
 
-def DCT(img):
-    # img = cv2.imread('baoguo1.jpg', 0)
-
+def Dct(img):
     img1 = img.astype('float')
 
     C_temp = np.zeros(img.shape)
@@ -80,16 +78,16 @@ def DCT(img):
     dst = np.dot(C_temp, img1)
     dst = np.dot(dst, np.transpose(C_temp))
 
-    dst1 = np.log(abs(dst))  # do log processing
+    dct = np.log(abs(dst))
 
     img_recor = np.dot(np.transpose(C_temp), dst)
     img_recor1 = np.dot(img_recor, C_temp)
 
-    img_dct = cv2.dct(img1)  # Perform discrete cosine transform
+    img_dct = cv2.dct(img1)
 
-    img_dct_log = np.log(abs(img_dct))  # do log processing
+    img_dct_log = np.log(abs(img_dct))
 
-    img_recor2 = cv2.idct(img_dct)  # Perform inverse discrete cosine transform
+    img_recor2 = cv2.idct(img_dct)
 
     plt.subplot(231)
     plt.imshow(img1, 'gray')
@@ -97,13 +95,13 @@ def DCT(img):
     plt.xticks([]), plt.yticks([])
 
     plt.subplot(232)
-    plt.imshow(dst1)
+    plt.imshow(dct)
     plt.title('DCT1')
     plt.xticks([]), plt.yticks([])
 
     plt.subplot(233)
     plt.imshow(img_recor1, 'gray')
-    plt.title('IDCT1')
+    plt.title('IDCT')
     plt.xticks([]), plt.yticks([])
 
     plt.subplot(234)
