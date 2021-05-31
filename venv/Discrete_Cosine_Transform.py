@@ -1,5 +1,4 @@
 import math
-
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -118,6 +117,3 @@ def Dct(img):
 
     plt.show()
 
-
-def test(img, m, n):
-    img1 = img.astype('float')

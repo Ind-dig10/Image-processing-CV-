@@ -2,13 +2,14 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 #from Power_transformation import superimpose_mask_on_image
-#from Roberts_2 import roberts_func
-#from Binary import *
+from Roberts_2 import roberts_func
+from Binary import *
 from Aff_6 import *
 from test import *
-#from lab3 import *
+from lab3 import *
 from Dct_Transform import *
 from Discrete_Cosine_Transform import *
+from Power_transformation import *
 
 #Гамма
 gamma = 1.8
@@ -18,29 +19,31 @@ gamma = 1.8
 image = cv2.imread("2.jpg")
 #image = cv2.imread("2.jpg").astype(np.float32)
 
+
 filter_size = 4
-temp = np.zeros(image1.shape, image1.dtype)
+#temp = np.zeros(image1.shape, image1.dtype)
 #Преобразование в полутоновое
-#gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+cv2.imshow("f", image)
 #cv2.imshow("Image_2", gray_image)
 #print(gray_image[12][44])
 
 #1_лабораторная работа
 #Степенное преобразование(гамма)
-#result_image = Power_transformation.gamma_2(gray_image, gamma)
+#result_image = gamma_2(gray_image, gamma)
 #cv2.imshow("Gamma", result_image)
 
 #2_лабораторная работа
 #Оператор Робертса
 #roberts_func(image)
 #kernely = np.array([[0, -1], [1, 0]], dtype=int)
-#superimpose_mask_on_image(kernely, image)
+
 
 #3_Лабораторная работа
 #Lab_3("kzn_2.jpg")
 
 #4_лабораторная работа
-#Dct(image1)
+#Dct(gray_image)
 
 #5 бинаризация изображения
 #binaryImage = binary_image_transformations(image)
@@ -88,8 +91,8 @@ temp = np.zeros(image1.shape, image1.dtype)
 
 #6_Лабораторная работа
 #Смещение изображения
-Affine(image, 50, 20)  #Функция смещения от OpenCV. 1 Значение по горизонтали, 2 по вертикали
-out = CustomAffine(image, tx=10, ty=20)  #Собственная функция смещения. 1 Значение по горизонтали, 2 по вертикали
+Affine(image, 100, 50)  #Функция смещения от OpenCV. 1 Значение по горизонтали, 2 по вертикали
+out = CustomAffine(image, tx=100, ty=50)  #Собственная функция смещения. 1 Значение по горизонтали, 2 по вертикали
 cv2.imshow("Custom_Translate", out)
 
 cv2.waitKey(0)
