@@ -24,7 +24,7 @@ filter_size = 4
 #temp = np.zeros(image1.shape, image1.dtype)
 #Преобразование в полутоновое
 gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-cv2.imshow("f", image)
+#cv2.imshow("f", image)
 #cv2.imshow("Image_2", gray_image)
 #print(gray_image[12][44])
 
@@ -46,17 +46,19 @@ cv2.imshow("f", image)
 #Dct(gray_image)
 
 #5 бинаризация изображения
-#binaryImage = binary_image_transformations(image)
+binaryImage = binary_image_transformations(image)
 #opencv_er = Morphological_transformations(binaryImage, 1)
 #opencv_dl = Morphological_transformations(binaryImage, 2)
+opencv_close = Morphological_transformations(binaryImage, 4)
 #opencv_mf = Morphological_transformations(binaryImage, 5)
 #cv2.imshow("OPENCV_EROSION", opencv_er)
 #cv2.imshow("OPENCV_DILATION", opencv_dl)
 #cv2.imshow("OPENCV_MRF_GRADIENT", opencv_mf)
+cv2.imshow("OPENCV_CLOSE", opencv_close)
 
 #er = erosion(image, binaryImage)
 #dl = dilation(image, binaryImage)
-#mf = morf_gradient(dl,er)
+zamikanie(image,binaryImage)
 
 #plt.subplot(231)
 #plt.imshow(opencv_er, 'gray')
@@ -91,9 +93,9 @@ cv2.imshow("f", image)
 
 #6_Лабораторная работа
 #Смещение изображения
-Affine(image, 100, 50)  #Функция смещения от OpenCV. 1 Значение по горизонтали, 2 по вертикали
-out = CustomAffine(image, tx=100, ty=50)  #Собственная функция смещения. 1 Значение по горизонтали, 2 по вертикали
-cv2.imshow("Custom_Translate", out)
+#Affine(image, 100, 50)  #Функция смещения от OpenCV. 1 Значение по горизонтали, 2 по вертикали
+#out = CustomAffine(image, tx=100, ty=50)  #Собственная функция смещения. 1 Значение по горизонтали, 2 по вертикали
+#cv2.imshow("Custom_Translate", out)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()

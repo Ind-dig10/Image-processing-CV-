@@ -58,7 +58,7 @@ def erosion(image, binary_image):
             elif j == 0:
                 erode[i, j] = np.min(binary[(i - 1):(i + 2), j:(j + 2)])
 
-    cv2.imshow("my_erosion", erode)
+    #cv2.imshow("my_erosion", erode)
     return erode
 
 
@@ -77,7 +77,7 @@ def dilation(image, binary_image):
             elif j == 0:
                 dilate[i, j] = np.max(binary[(i - 1):(i + 2), j:(j + 2)])
 
-    cv2.imshow("my_dilate", dilate)
+    #cv2.imshow("my_dilate", dilate)
     return dilate
 
 
@@ -88,3 +88,7 @@ def morf_gradient(dilation, erosion):
     result = np.absolute(np.array(dilate) - np.array(erode))
     cv2.imshow("My_morph_gradient", result)
     return result
+
+def zamikanie(image, binary):
+    result = erosion(image, dilation(image, binary))
+    cv2.imshow("Custom_CLOSE", result)
