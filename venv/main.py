@@ -46,19 +46,24 @@ gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 #Dct(gray_image)
 
 #5 бинаризация изображения
-binaryImage = binary_image_transformations(image)
+binaryImage = Adaptive_Thresholding_Custom("2.jpg", 5)
+opencv_adapBinary = Adaptive_Thresholding()
+
+#binaryImage = binary_image_transformations(image)
 #opencv_er = Morphological_transformations(binaryImage, 1)
 #opencv_dl = Morphological_transformations(binaryImage, 2)
-opencv_close = Morphological_transformations(binaryImage, 4)
+#opencv_close = Morphological_transformations(opencv_adapBinary, 4)
 #opencv_mf = Morphological_transformations(binaryImage, 5)
 #cv2.imshow("OPENCV_EROSION", opencv_er)
 #cv2.imshow("OPENCV_DILATION", opencv_dl)
 #cv2.imshow("OPENCV_MRF_GRADIENT", opencv_mf)
-cv2.imshow("OPENCV_CLOSE", opencv_close)
+
+#cv2.imshow("OPENCV_CLOSE", opencv_close)
 
 #er = erosion(image, binaryImage)
 #dl = dilation(image, binaryImage)
-zamikanie(image,binaryImage)
+cv2.imshow("adaptive_treshold", opencv_adapBinary)
+close_custom(image,binaryImage)
 
 #plt.subplot(231)
 #plt.imshow(opencv_er, 'gray')

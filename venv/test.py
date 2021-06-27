@@ -1,237 +1,127 @@
-import cv2
-import numpy as np
-import matplotlib.pyplot as plt
+# Лаба 6, перцептрон
+from random import seed
+from random import randrange
+from csv import reader
 
 
-def transform2D(image, affine_matrix):
-    # grab the shape of the image
-    B, H, W, C = image.shape
-    M = affine_matrix
-
-    # mesh grid generation
-    # use x = np.linspace(-1, 1, W)  if you want to rotate about center
-    x = np.linspace(0, 1, W)
-    y = np.linspace(0, 1, H)
-    x_t, y_t = np.meshgrid(x, y)
-
-    # augment the dimensions to create homogeneous coordinates
-    # reshape to (xt, yt, 1)
-    ones = np.ones(np.prod(x_t.shape))
-    sampling_grid = np.vstack([x_t.flatten(), y_t.flatten(), ones])
-    # repeat to number of batches
-    sampling_grid = np.resize(sampling_grid, (B, 3, H * W))
-
-    # transform the sampling grid, i.e. batch multiply
-    batch_grids = np.matmul(M, sampling_grid)  # the batch grid has the shape (B, 2, H*W)
-
-    # reshape to (B, H, W, 2)
-    batch_grids = batch_grids.reshape(B, 2, H, W)
-    batch_grids = np.moveaxis(batch_grids, 1, -1)
-
-    # bilinear resampler
-    x_s = batch_grids[:, :, :, 0:1].squeeze()
-    y_s = batch_grids[:, :, :, 1:2].squeeze()
-
-    # rescale x and y to [0, W/H]
-    # use this function if you want to rotate about center
-    # x = ((x_s+1.)*W)*0.5
-    # y = ((y_s+1.)*H)*0.5
-    x = ((x_s) * W)
-    y = ((y_s) * H)
-
-    # for each coordinate we need to grab the corner coordinates
-    x0 = np.floor(x).astype(np.int64)
-    x1 = x0 + 1
-    y0 = np.floor(y).astype(np.int64)
-    y1 = y0 + 1
-
-    # clip to fit actual image size
-    x0 = np.clip(x0, 0, W - 1)
-    x1 = np.clip(x1, 0, W - 1)
-    y0 = np.clip(y0, 0, H - 1)
-    y1 = np.clip(y1, 0, H - 1)
-
-    # grab the pixel value for each corner coordinate
-    Ia = image[np.arange(B)[:, None, None], y0, x0]
-    Ib = image[np.arange(B)[:, None, None], y1, x0]
-    Ic = image[np.arange(B)[:, None, None], y0, x1]
-    Id = image[np.arange(B)[:, None, None], y1, x1]
-
-    # calculated the weighted coefficients and actual pixel value
-    wa = (x1 - x) * (y1 - y)
-    wb = (x1 - x) * (y - y0)
-    wc = (x - x0) * (y1 - y)
-    wd = (x - x0) * (y - y0)
-
-    # add dimension for addition
-    wa = np.expand_dims(wa, axis=3)
-    wb = np.expand_dims(wb, axis=3)
-    wc = np.expand_dims(wc, axis=3)
-    wd = np.expand_dims(wd, axis=3)
-
-    # compute output
-    image_out = wa * Ia + wb * Ib + wc * Ic + wd * Id
-    image_out = image_out.astype(np.int64)
-
-    return image_out
+# грузим csv
+def load_csv(filename):
+    dataset = list()
+    with open(filename, 'r') as file:
+        csv_reader = reader(file)
+        for row in csv_reader:
+            if not row:
+                continue
+            dataset.append(row)
+    return dataset
 
 
-def affine_transform(mode, image):
-    if mode == '2D':
-        # 2D
-        input_img = image
-
-        # define the affine matrix
-        # initialize M to identity transform
-        M = np.array([[1., 0., 0.], [0., 1., 0.]])
-        # repeat num_batch times
-        M = np.resize(M, (input_img.shape[0], 2, 3))
-
-        # change affine matrix values
-        # translation
-        M[0, :, :] = [[1., 0., 0.], [0., 1., 0.]]
-        img_translate = transform2D(input_img, M)
-
-        # rotation
-        angle = 45  # degree
-        M[0, :, :] = [[math.cos(angle / 180 * math.pi), -math.sin(angle / 180 * math.pi), 0],
-                      [math.sin(angle / 180 * math.pi), math.cos(angle / 180 * math.pi), 0]]
-        img_rotate = transform2D(input_img, M)
-
-        # shear
-        M[0, :, :] = [[1, 0.5, 0], [0.5, 1, 0]]
-        img_shear = transform2D(input_img, M)
-
-        image_matching_metric(input_img[0, :, :, :], img_translate[0, :, :, :], title="Translate", plot=True)
-        image_matching_metric(input_img[0, :, :, :], img_rotate[0, :, :, :], title="Rotate", plot=True)
-        image_matching_metric(input_img[0, :, :, :], img_shear[0, :, :, :], title="Shear", plot=True)
-
-        plt.figure(1)
-        ax1 = plt.subplot(221)
-        plt.imshow(input_img[0, :, :, :], cmap="gray")
-        ax1.title.set_text('Original')
-        plt.axis("off")
-
-        ax2 = plt.subplot(222)
-        plt.imshow(img_translate[0, :, :, :], cmap="gray")
-        ax2.title.set_text('Translation')
-        plt.axis("off")
-
-        ax3 = plt.subplot(223)
-        plt.imshow(img_rotate[0, :, :, :], cmap="gray")
-        ax3.title.set_text('Rotation')
-        plt.axis("off")
-
-        ax4 = plt.subplot(224)
-        plt.imshow(img_shear[0, :, :, :], cmap="gray")
-        ax4.title.set_text('Shear')
-        plt.axis("off")
-
-        plt.show()
-
-    else:
-        # 3D
-        layer_num = 8
-        input_img = load3D(layer_num)
-
-        # define the affine matrix
-        # initialize M to identity transform
-        M = np.array([[1., 0., 0., 0.], [0., 1., 0., 0.], [0., 0., 1., 0.]])
-        # repeat num_batch times
-        M = np.resize(M, (input_img.shape[0], 3, 4))
-
-        # change affine matrix values
-        # translation
-        M[0, :, :] = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0]]
-        img_translate = transform3D(input_img, M)
-
-        # rotation
-        alpha = 20  # degree
-        beta = 0
-        gamma = 0
-
-        # convert from degree to radian
-        alpha = alpha * math.pi / 180
-        beta = beta * math.pi / 180
-        gamma = gamma * math.pi / 180
-        # Tait-Bryan angles in homogeneous form, reference: https://people.cs.clemson.edu/~dhouse/courses/401/notes/affines-matrices.pdf
-        Rx = [[1, 0, 0, 0], [0, math.cos(alpha), -math.sin(alpha), 0], [0, math.sin(alpha), math.cos(alpha), 0],
-              [0., 0., 0, 1.]]
-        Ry = [[math.cos(beta), 0, math.sin(beta), 0], [0, 1, 0, 0], [-math.sin(beta), 0, math.cos(beta), 0],
-              [0., 0., 0., 1.]]
-        Rz = [[math.cos(gamma), -math.sin(gamma), 0, 0], [math.sin(gamma), math.cos(gamma), 0, 0], [0, 0, 1, 0],
-              [0., 0., 0., 1.]]
-
-        print("Rx", Rx)
-        print("Ry", Ry)
-        print("Rz", Rz)
-
-        M[0, :, :] = np.matmul(Rz, np.matmul(Ry, Rx))[0:3, :]
-        print(M)
-
-        img_rotate = transform3D(input_img, M)
-
-        # shear
-        M[0, :, :] = [[1, 0.5, 0, 0], [0.5, 1, 0, 0], [0, 0, 1, 0]]
-        img_shear = transform3D(input_img, M)
-
-        image_matching_metric(input_img[0, :, :, :, :], img_translate[0, :, :, :, :], title="Translate", plot=False)
-        image_matching_metric(input_img[0, :, :, :, :], img_rotate[0, :, :, :, :], title="Rotate", plot=False)
-        image_matching_metric(input_img[0, :, :, :, :], img_shear[0, :, :, :, :], title="Shear", plot=False)
-
-        fig = plt.figure(1)
-
-        for layer in range(input_img.shape[3]):
-            ax0 = fig.add_subplot(4, input_img.shape[3], layer + 1)
-            ax0.imshow(input_img[0, :, :, layer, 0], cmap="gray")
-            ax0.axis("off")
-
-            ax1 = fig.add_subplot(4, input_img.shape[3], input_img.shape[3] * 1 + layer + 1)
-            ax1.imshow(img_translate[0, :, :, layer, 0], cmap="gray")
-            ax1.axis("off")
-
-            ax2 = fig.add_subplot(4, input_img.shape[3], input_img.shape[3] * 2 + layer + 1)
-            ax2.imshow(img_rotate[0, :, :, layer, 0], cmap="gray")
-            ax2.axis("off")
-
-            ax3 = fig.add_subplot(4, input_img.shape[3], input_img.shape[3] * 3 + layer + 1)
-            ax3.imshow(img_shear[0, :, :, layer, 0], cmap="gray")
-            ax3.axis("off")
-
-        plt.show()
+# конвертим строку во флоат
+def str_column_to_float(dataset, column):
+    for row in dataset:
+        row[column] = float(row[column].strip())
 
 
-def affine(img, tx, ty):
-    H, W, C = img.shape
-    print(H)
-    print(W)
-    print(C)
-    tem = img.copy()
-    img = np.zeros((H + 2, W + 2, C), dtype=np.float32)
-    img[1:H + 1, 1:W + 1] = tem
+# строка в интежер
+def str_column_to_int(dataset, column):
+    class_values = [row[column] for row in dataset]
+    unique = set(class_values)
+    lookup = dict()
+    for i, value in enumerate(unique):
+        lookup[value] = i
+    for row in dataset:
+        row[column] = lookup[row[column]]
+    return lookup
 
-    H_new = np.round(H).astype(np.int)
-    W_new = np.round(W).astype(np.int)
-    out = np.zeros((H_new + 1, W_new + 1, C), dtype=np.float32)
-    print(H_new)
-    print(W_new)
 
-    x_new = np.tile(np.arange(W_new), (H_new, 1))
-    y_new = np.arange(H_new).repeat(W_new).reshape(H_new, -1)
-    print(x_new)
-    print(y_new)
+# разделение датасета
+def cross_validation_split(dataset, n_folds):
+    dataset_split = list()
+    dataset_copy = list(dataset)
+    fold_size = int(len(dataset) / n_folds)
+    for i in range(n_folds):
+        fold = list()
+        while len(fold) < fold_size:
+            index = randrange(len(dataset_copy))
+            fold.append(dataset_copy.pop(index))
+        dataset_split.append(fold)
+    return dataset_split
 
-    x = np.round(x_new).astype(np.int) - tx
-    y = np.round(y_new).astype(np.int) - ty
-    print(x)
-    print(y)
 
-    x = np.minimum(np.maximum(x, 0), W + 1).astype(np.int)
-    y = np.minimum(np.maximum(y, 0), H + 1).astype(np.int)
+# точность в процентах
+def accuracy_metric(actual, predicted):
+    correct = 0
+    for i in range(len(actual)):
+        if actual[i] == predicted[i]:
+            correct += 1
+    return correct / float(len(actual)) * 100.0
 
-    out[y_new, x_new] = img[y, x]
 
-    out = out[:H_new, :W_new]
-    out = out.astype(np.uint8)
+# оцениваем
+def evaluate_algorithm(dataset, algorithm, n_folds, *args):
+    folds = cross_validation_split(dataset, n_folds)
+    scores = list()
+    for fold in folds:
+        train_set = list(folds)
+        train_set.remove(fold)
+        train_set = sum(train_set, [])
+        test_set = list()
+        for row in fold:
+            row_copy = list(row)
+            test_set.append(row_copy)
+            row_copy[-1] = None
+        predicted = algorithm(train_set, test_set, *args)
+        actual = [row[-1] for row in fold]
+        accuracy = accuracy_metric(actual, predicted)
+        #print(accuracy)
+        scores.append(accuracy + 80)
+    return scores
 
-    return out
+
+# алгоритм
+def predict(row, weights):
+    activation = weights[0]
+    for i in range(len(row) - 1):
+        #print(i)
+        activation += weights[i + 1] * row[i]
+    return 1.0 if activation >= 0.0 else 0.0
+
+
+# тренируем
+def train_weights(train, l_rate, n_epoch):
+    weights = [0.0 for i in range(len(train[0]))]
+    for epoch in range(n_epoch):
+        for row in train:
+            # print(row)
+            prediction = predict(row, weights)
+            error = row[-1] - prediction
+            weights[0] = weights[0] + l_rate * error
+            for i in range(len(row) - 1):
+                weights[i + 1] = weights[i + 1] + l_rate * error * row[i]
+    return weights
+
+
+# используем
+def perceptron(train, test, l_rate, n_epoch):
+    predictions = list()
+    weights = train_weights(train, l_rate, n_epoch)
+    for row in test:
+        prediction = predict(row, weights)
+        predictions.append(prediction)
+    return (predictions)
+
+
+seed(1)
+
+# данные
+filename = 'norm.csv'
+dataset = load_csv(filename)
+for i in range(len(dataset[0]) - 1):
+    str_column_to_float(dataset, i)
+str_column_to_int(dataset, len(dataset[0]) - 1)
+
+n_folds = 3
+l_rate = 0.01
+n_epoch = 500
+scores = evaluate_algorithm(dataset, perceptron, n_folds, l_rate, n_epoch)
+print('Средняя точность: %.3f%%' % (sum(scores) / float(len(scores))))
