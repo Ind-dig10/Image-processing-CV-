@@ -42,7 +42,6 @@ def Adaptive_Thresholding_Custom(filename, step=20):
 
     img2 = Image.new("1", img.size)
     img2.putdata(arr2d[0].tolist())
-    #img2.show()
     print(type(img2))
     return img2
 
