@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad7c18a3-592a-4d0c-aa9d-620baa58a2f5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Scripts/Computer Vision/kzn.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Scripts/Computer Vision/kzn.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/kzn.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/kzn_3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Scripts/Computer Vision/kzn_3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Roberts_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Scripts/Computer Vision/Roberts_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/Compress/A.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/Compress/DM.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/Compress/Sound_compress.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Scripts/Compress/Sound_compress.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/Compress/mu.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/Compress/raw.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/Computer Vision/lab_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Scripts/Computer Vision/lab_3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/Computer Vision/lab_4.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Scripts/Computer Vision/lab_4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/Computer Vision/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Scripts/Computer Vision/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/Computer Vision/main_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Scripts/Computer Vision/main_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +54,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ScikitLearn_dataset_template" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
@@ -56,14 +63,14 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\andre\PycharmProjects\Computer_Vision\venv\Scripts\Computer Vision" />
+      <recent name="C:\Users\andre\PycharmProjects\Computer_Vision\venv\Scripts\Compress\JPEG" />
       <recent name="C:\Users\andre\PycharmProjects\Computer_Vision\venv\Scripts\Compress" />
-      <recent name="C:\Users\andre\PycharmProjects\Computer_Vision\venv\Scripts\Computer Vision\Descriptors" />
-      <recent name="C:\Users\andre\PycharmProjects\Computer_Vision\venv\Scripts\Computer Vision\dataset" />
-      <recent name="C:\Users\andre\PycharmProjects\Computer_Vision\venv\Scripts\Compress\JPEG\jpeg" />
+      <recent name="C:\Users\andre\PycharmProjects\Computer_Vision\venv" />
+      <recent name="C:\Users\andre\PycharmProjects\Computer_Vision\venv\Scripts" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.lab_3">
-    <configuration name="Segmentation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.main">
+    <configuration name="CodeWord" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Image_Processing" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -75,7 +82,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/Scripts/Computer Vision/Segmentation.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/Scripts/Computer Vision/CodeWord.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -84,49 +91,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="grab" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Image_Processing" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$USER_HOME$/OneDrive/Рабочий стол/Учеба/3 семестр/КЗ/ТретьяЛаба" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$USER_HOME$/OneDrive/Рабочий стол/Учеба/3 семестр/КЗ/ТретьяЛаба/grab.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="kmeans" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Image_Processing" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$USER_HOME$/OneDrive/Рабочий стол/Учеба/3 семестр/КЗ/ТретьяЛаба" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$USER_HOME$/OneDrive/Рабочий стол/Учеба/3 семестр/КЗ/ТретьяЛаба/kmeans.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="lab_3" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="OpticFlow" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Image_Processing" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -138,7 +103,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/Scripts/Computer Vision/lab_3.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/Scripts/Computer Vision/OpticFlow.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -147,7 +112,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="watershed" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="lab_4" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Image_Processing" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -155,11 +120,53 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$USER_HOME$/OneDrive/Рабочий стол/Учеба/3 семестр/КЗ/ТретьяЛаба" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv/Scripts/Computer Vision" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$USER_HOME$/OneDrive/Рабочий стол/Учеба/3 семестр/КЗ/ТретьяЛаба/watershed.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/Scripts/Computer Vision/lab_4.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Image_Processing" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv/Scripts/Computer Vision" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/Scripts/Computer Vision/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main_2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Image_Processing" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv/Scripts/Computer Vision" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/Scripts/Computer Vision/main_2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -170,11 +177,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.lab_3" />
-        <item itemvalue="Python.kmeans" />
-        <item itemvalue="Python.grab" />
-        <item itemvalue="Python.watershed" />
-        <item itemvalue="Python.Segmentation" />
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.CodeWord" />
+        <item itemvalue="Python.main_2" />
+        <item itemvalue="Python.lab_4" />
+        <item itemvalue="Python.OpticFlow" />
       </list>
     </recent_temporary>
   </component>
@@ -223,10 +230,27 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/venv/Scripts/Computer Vision/lab_3.py</url>
-          <line>18</line>
+          <line>20</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/venv/Scripts/Compress/Sound_compress.py</url>
+          <line>116</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/OneDrive/Рабочий стол/Учеба/3 семестр/КЗ/ЧетвертаяЛаба/Lab4.py</url>
+          <line>6</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
     </breakpoint-manager>
   </component>
 </project>

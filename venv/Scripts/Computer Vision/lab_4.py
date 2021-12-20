@@ -1,37 +1,34 @@
-import cv2
 import numpy as np
-import os, sys
+import cv2
 
-video = cv2.VideoCapture(os.path.join(ROOT_DIR, 'car_video.mp4'))
-k = 0
-imgs = []
-while(True):
-    ret, frame = video.read()
-    if ret == False:
-        break
+cap = cv2.VideoCapture('VID1.mp4')
+# обучение по всему видео идет
+frameIds = cap.get(cv2.CAP_PROP_FRAME_COUNT) * np.random.uniform(size=25)
+frames = []
+for fid in frameIds:
+    cap.set(cv2.CAP_PROP_POS_FRAMES, fid)
+    ret, frame = cap.read()
+    frames.append(frame)
+# среднее
+medianFrame = np.median(frames, axis=0).astype(dtype=np.uint8)
+
+cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+grayMedianFrame = cv2.cvtColor(medianFrame, cv2.COLOR_BGR2GRAY)
+# модуль разности
+ret = True
+while (ret):
+    ret, frame = cap.read()
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-#    frame = cv2.medianBlur(frame, 15)
-    imgs.append(frame)
-    if k == 0:
-      print('enter')
-      cv2_imshow(frame)
-    k +=1
-#or i in
-img_mean = np.mean(imgs, axis = 0)
-img_std = np.std(imgs, axis = 0)
+    dframe = cv2.absdiff(frame, grayMedianFrame)
+    th, dframe = cv2.threshold(dframe, 30, 255, cv2.THRESH_BINARY)
+    # th, dframe = cv2.threshold(dframe, 1, 255, cv2.THRESH_BINARY)
+    cv2.imshow('frame', dframe)
+    if cv2.waitKey(1) & 0xFF == 27:
+        break
 
-print(img_mean)
-print(img_std)
+cv2.waitKey(0)
 
-k = 0
-for i in imgs:
-    if np.any(i - img_mean > img_std):
-        diff_image = cv2.absdiff(i, img_mean.astype("uint8"))
-        #diff_image = np.mean(diff_image, axis=2)
-        diff_image[diff_image<=img_mean] = 0
-        diff_image[diff_image>img_mean] = 255
-    if k < 5:
-      cv2.imwrite(os.path.join(RESULT_DIR, 'frame' + str(k) + '.png'), diff_image)
-      k +=1
+cap.release()
 
-print('success')
+cv2.destroyAllWindows()
+

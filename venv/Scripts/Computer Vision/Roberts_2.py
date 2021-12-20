@@ -20,11 +20,13 @@ def roberts_func(inputImage):
     absY = cv.convertScaleAbs(y)
 
     #Вычисление взвешенной суммы
-    Roberts = cv.addWeighted(absX, 1, absY, 0.8, -100)
+    Roberts = cv.addWeighted(absX, 1, absY, 12, -100)
 
     print(absX)
     print(absY)
     # cv.imshow("Ishodnoe", rgb_img)
     cv.imshow("Roberts", Roberts)
+    cv.waitKey(0)
+    cv.destroyAllWindows()
 
 

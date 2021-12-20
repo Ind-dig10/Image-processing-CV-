@@ -62,8 +62,8 @@ opencv_adapBinary = Adaptive_Thresholding()
 
 #er = erosion(image, binaryImage)
 #dl = dilation(image, binaryImage)
-cv2.imshow("adaptive_treshold", opencv_adapBinary)
-close_custom(image,binaryImage)
+#cv2.imshow("adaptive_treshold", opencv_adapBinary)
+#close_custom(image,binaryImage)
 
 #plt.subplot(231)
 #plt.imshow(opencv_er, 'gray')
