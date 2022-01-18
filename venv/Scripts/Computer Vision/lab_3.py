@@ -25,6 +25,9 @@ def waterched_custom(image):
     markers[unknown == 255] = 0
     markers = cv2.watershed(img, markers)
     img[markers == -1] = [255, 0, 0]
+   # cv2.circle(water, (350, 350), 5, (255, 255, 0))
+   # cv2.circle(water, (230, 200), 5, (255, 255, 0))
+    #cv2.circle(water, (1, 1), 5, (255, 255, 0))
     cv2.namedWindow('first', cv2.WINDOW_AUTOSIZE)
     cv2.imshow('second', unknown)
     cv2.imshow('first', img)
@@ -36,20 +39,19 @@ def watershed(image):
     img = cv2.imread(image, 0)
     imgc = cv2.imread(image)
     mark = np.zeros(img.shape[:2], dtype=np.int32)
-    mark[400, 350] = 10
-    mark[230, 200] = 20
-    mark[1, 1] = 90
+    mark[300, 250] = 90
+    mark[250, 350] = 50
+    mark[200, 350] = 50
+    mark[170, 250] = 50
+    mark[170, 200] = 50
 
     water = cv2.watershed(imgc, mark)
 
     water *= 20
     water = water.astype(np.uint8)
-    cv2.circle(water, (350, 350), 5, (255, 255, 0))
-    cv2.circle(water, (230, 200), 5, (255, 255, 0))
-    cv2.circle(water, (1, 1), 5, (255, 255, 0))
-    cv2.imshow('threshold', imgc)
 
-    cv2.imshow('water', water)
+    cv2.imshow('1', imgc)
+    cv2.imshow('2', water)
     while (True):
         if cv2.waitKey(33) == ord('q'):
             break
@@ -181,7 +183,7 @@ def canny(image):
     plt.show()
 
 
-image = 'flow.jpeg'
+image = 'kzn.jpg'
 gray = cv2.imread(image)
 #roberts_func(gray)
 #canny(image)
@@ -190,4 +192,6 @@ gray = cv2.imread(image)
 #global_threshold(image)
 #adaptive_threshold(image, 7)
 #watershed(image)
-waterched_custom(image)
+#waterched_custom(image)
+watershed(image)
+#waterched_custom(image)

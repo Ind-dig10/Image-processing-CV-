@@ -1,15 +1,9 @@
-from pylab import *
-from PIL import Image
-import Point_Detector as harris
+import pandas as pd
 import cv2 as cv
 import numpy as np
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
 
-image = cv.imread("kzn_3.jpg")
-h, w = image.shape[:2]
-cv.imshow("dsf", image)
-print(h/2, w/2, end='\n')
-print('a', 'b', 'c', sep='*')
-print('d', 'e', 'f', sep='**', end='')
-print('g', 'h', 'i', sep='+', end='%')
-print('j', 'k', 'l', sep='-', end='\n')
-cv.waitKey()
+boston_df = pd.DataFrame(boston.data, columns=boston.feature_names)
+boston_df['MEDV'] = boston.target
+boston_df.head()
